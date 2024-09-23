@@ -1,0 +1,15 @@
+hop main
+sleep 10 & sleep 10 &
+hop main
+sleep 5 & echo hi
+hop main
+hop -
+sleep 5 & echo hi
+hop main
+hop -
+sleep 7 & sleep 5 & sleep 3 & echo hi
+sleep 5 & echo hi
+hop main
+vim &
+[I[2;2R]11;rgb:f8f8/f8f8/f8f8[?12;2$y:qhop main
+hop main
