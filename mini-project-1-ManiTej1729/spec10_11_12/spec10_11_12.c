@@ -181,7 +181,9 @@ void mid_processing(char *command, int foreground, int background, char *oldwd, 
         }
         else {
             close(curr_fd[1]);
-            close(prev_fd);
+            if (i > 0) {
+                close(prev_fd);
+            }
             waitpid(rc, NULL, 0);
             if (i < num_commands - 1) {
                 prev_fd = curr_fd[0];
