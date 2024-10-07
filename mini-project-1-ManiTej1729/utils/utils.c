@@ -13,8 +13,18 @@ bool is_number(char *s) {
     return isdigit(s[len - 1]);
 }
 
+void remove_double_quotes(char *s) {
+    int len = strlen(s);
+    for (int i = 0; i < len; i++) {
+        if (s[i] == '\"') {
+            s[i] = ' ';
+        }
+    }
+}
+
 bool is_not_inbuilt(char *command, char *oldwd, char *cwd, int *no_of_bkgd_processes) {
     // hop, reveal, log, proclore, seek
+    trim_command(command);
     char *command_copy = strdup(command);
     trim_command(command_copy);
     char **args = parse_command(command_copy);
@@ -55,6 +65,7 @@ bool is_not_inbuilt(char *command, char *oldwd, char *cwd, int *no_of_bkgd_proce
                 return true;
             }
             get_alias(args[0], command_copy);
+            remove_double_quotes(command_copy);
             is_not_inbuilt(command_copy, oldwd, cwd, no_of_bkgd_processes);
         }
         else { // function
